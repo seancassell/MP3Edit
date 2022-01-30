@@ -1,0 +1,4 @@
+$(ProjectDir)libs\fmt\include\
+$(ProjectDir)libs\id3v2lib\include\
+$(ProjectDir)libs\UTF8\include\
+$(ProjectDir)libs\Win32Handle\include\

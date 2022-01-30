@@ -1,0 +1,17 @@
+frame_id, name
+TALB, Album
+TPE1, Artist
+TPE2, AlbumArtist
+COMM, Comment
+TCOM, Composer
+TPOS, Disc Number (e.g. 5/5)
+TENC, Encoded By
+TCON, Genre
+TIT2, Title
+TRCK, Track (e.g. 17/17)
+TYER, Year
+TSOA, AlbumSort
+TSOP, ArtistSort
+TSOT, TitleSort
+TSO2, AlbumArtistSort
+APIC, [Attached JPEG image]

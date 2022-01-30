@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\data">
+      <UniqueIdentifier>{D0F3DEDE-1054-4C3B-9F0E-1E3310A27426}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\genres">
+      <UniqueIdentifier>{75193604-665C-4BB0-9596-37A1EEC7EC45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libs">
+      <UniqueIdentifier>{C662DA50-940A-4614-A9E3-1DD6A4C5CF76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libs">
+      <UniqueIdentifier>{1D6C3215-28D8-4F0B-B091-7EE5A4A90972}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libs\fmt">
+      <UniqueIdentifier>{C0FCF99D-65C6-4A0F-A705-8217DA509854}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libs\fmt">
+      <UniqueIdentifier>{69CA855C-4325-4E14-BC07-B717B04A423B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libs\id3v2lib">
+      <UniqueIdentifier>{B51D6383-11B1-4671-9D81-CD5CFE83908C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libs\id3v2lib\id3v2lib">
+      <UniqueIdentifier>{4C4EBD02-80C7-4FC1-B58F-864CF5244ED2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libs\id3v2lib">
+      <UniqueIdentifier>{B2E722B9-EC0F-4960-A33E-B6DEBB26793B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libs\UTF8">
+      <UniqueIdentifier>{EFB93E4C-3FAB-4CF3-9227-E0F366B5CF04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libs\UTF8\UTF8">
+      <UniqueIdentifier>{2532E071-F3FD-4B55-80BB-97EEE4148201}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libs\Win32Handle">
+      <UniqueIdentifier>{B582C727-FFB6-4454-98A1-33079E73C542}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BuildInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlVars.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileDlgFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MP3Edit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data\Strings.hpp">
+      <Filter>Header Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="genres\GenreList.hpp">
+      <Filter>Header Files\genres</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\chrono.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\color.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\compile.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\core.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\format.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\format-inl.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\locale.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\OS.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\ostream.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\POSIX.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\printf.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\fmt\include\fmt\ranges.hpp">
+      <Filter>Header Files\libs\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\id3v2lib\include\id3v2lib.h">
+      <Filter>Header Files\libs\id3v2lib</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\id3v2lib\include\id3v2lib\constants.h">
+      <Filter>Header Files\libs\id3v2lib\id3v2lib</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\id3v2lib\include\id3v2lib\frame.h">
+      <Filter>Header Files\libs\id3v2lib\id3v2lib</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\id3v2lib\include\id3v2lib\header.h">
+      <Filter>Header Files\libs\id3v2lib\id3v2lib</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\id3v2lib\include\id3v2lib\types.h">
+      <Filter>Header Files\libs\id3v2lib\id3v2lib</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\id3v2lib\include\id3v2lib\utils.h">
+      <Filter>Header Files\libs\id3v2lib\id3v2lib</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\UTF8\include\UTF8.hpp">
+      <Filter>Header Files\libs\UTF8</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\UTF8\include\UTF8\Checked.hpp">
+      <Filter>Header Files\libs\UTF8\UTF8</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\UTF8\include\UTF8\Core.hpp">
+      <Filter>Header Files\libs\UTF8\UTF8</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\UTF8\include\UTF8\CPP11.hpp">
+      <Filter>Header Files\libs\UTF8\UTF8</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\UTF8\include\UTF8\Unchecked.hpp">
+      <Filter>Header Files\libs\UTF8\UTF8</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\Win32Handle\include\Win32Handle.h">
+      <Filter>Header Files\libs\Win32Handle</Filter>
+    </ClInclude>
+    <ClInclude Include="res\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FileDlgFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MP3Edit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genres\GenreList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\fmt\src\format.cpp">
+      <Filter>Source Files\libs\fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\fmt\src\OS.cpp">
+      <Filter>Source Files\libs\fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\id3v2lib\src\frame.c">
+      <Filter>Source Files\libs\id3v2lib</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\id3v2lib\src\header.c">
+      <Filter>Source Files\libs\id3v2lib</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\id3v2lib\src\id3v2lib.c">
+      <Filter>Source Files\libs\id3v2lib</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\id3v2lib\src\types.c">
+      <Filter>Source Files\libs\id3v2lib</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\id3v2lib\src\utils.c">
+      <Filter>Source Files\libs\id3v2lib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\MP3Edit.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\icons\MP3Edit.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icons\small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="version.txt" />
+  </ItemGroup>
+</Project>

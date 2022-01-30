@@ -1,0 +1,19 @@
++ ==========    LIST OF CONTROLS USED BY DESIGN THE MAIN WINDOW     ========== +
+
+LABELS:
+- lblAudiobooks
+
+TEXTBOXES:
+- txtTitle
+
+CHECKBOXES:
+[N/A]
+
+GROUPBOXES:
+[N/A]
+
+LISTBOXES:
+- ddlAudiobooks
+
+BUTTONS:
+- btnSelectImage

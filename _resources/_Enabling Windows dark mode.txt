@@ -1,0 +1,36 @@
+// Based off of the following StackOverflow answer, attempt to enable the 
+// dark Windows 10 theme for the window:
+//    https://stackoverflow.com/a/53545935
+// SetWindowTheme(hWnd, L"DarkMode_Explorer", nullptr);
+
+// Based off of the following StackOverflow answer, and the GitHub project, 
+// attempt to enable the dark Windows 10 theme for the window:
+//    - https://stackoverflow.com/a/53545935
+//    - https://github.com/ysc3839/win32-darkmode/blob/master/win32-darkmode/win32-darkmode.cpp
+SetWindowTheme(hWnd, L"DarkMode_Explorer", nullptr);
+SendMessageA(hWnd, WM_THEMECHANGED, 0, 0);
+
+C++ Windows SDK SetWindowTheme DarkMode_Explorer
+
+
+case ID_BTN_AUDIOBOOKS:
+	{
+		// Handle the click event of 'btnAudiobooks':
+	}
+	break;
+case ID_BTN_MOVIES:
+	{
+		// Handle the click event of 'btnMovies':
+	}
+	break;
+case ID_BTN_THUMBDRIVES:
+	{
+		// Handle the click event of 'btnThumbdrives':
+	}
+	break;
+case ID_BTN_TV_SHOWS:
+	{
+		// Handle the click event of 'btnTvShows':
+	}
+	break;
+

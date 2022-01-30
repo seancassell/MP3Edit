@@ -1,0 +1,29 @@
+"C:\Users\seanc\source\repos\MediaManager\MediaManager\res\bitmaps\refresh_64px_e1e1e1.bmp"
+"C:\Users\seanc\source\repos\MediaManager\MediaManager\res\bitmaps\refresh_64px_ff00ff.bmp"
+
+IDB_BMP_REFRESH_E1E1E1_64PX
+IDB_BMP_REFRESH_FF00FF_64PX
+IDB_BMP_REFRESH_F0F0F0_64PX
+
+F0F0F0
+f0f0f0
+
+"4.2.020.17"
+4,2,20,17
+
+<Image Include="res\bitmaps\refresh_64px_e1e1e1.bmp" />
+<Image Include="res\bitmaps\refresh_64px_f0f0f0.bmp" />
+<Image Include="res\bitmaps\refresh_64px_ff00ff.bmp" />
+
+IDD_DLG_CHECKUPDATE DIALOGEX 0, 0, 311, 188
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Checking for update..."
+FONT 10, "Segoe UI", 300, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON    "OK",IDOK,199,167,50,14
+    PUSHBUTTON       "Cancel",IDCANCEL,254,167,50,14
+END
+
+CFU_IMG_BMP_REFRESH
+CFU_LBL_STATUS
