@@ -24,10 +24,10 @@ namespace str {
 	
 	// Program information;
 	const std::string PROGRAM_NAME      = "MP3Edit"s;
-	const std::string PROGRAM_VERSION   = "1.0.028.1"s;
+	const std::string PROGRAM_VERSION   = "1.1.031.7"s;
 	const std::string BUILD_NUMBER      = VAL_VER_BUILDNUM_S;
 	const std::string PROGRAM_DESCRIPT  = 
-		"Native Win32 GUI program to easily manage MP3s."s;
+		"Native Win32 GUI program to easily edit the ID3 metadata tags of MP3s."s;
 	const std::string PROGRAM_COPYRIGHT = 
 		"Copyright (c) 2022 Sean Cassell <sean.cassell@outlook.com>"s;
 	constexpr const char BUILT_ON[12]   = __DATE__;

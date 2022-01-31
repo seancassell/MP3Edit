@@ -19,6 +19,12 @@
     <Filter Include="Header Files\genres">
       <UniqueIdentifier>{75193604-665C-4BB0-9596-37A1EEC7EC45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GuiClasses">
+      <UniqueIdentifier>{41CD2038-8913-4E1E-8BA8-A144AD8BE697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GuiClasses">
+      <UniqueIdentifier>{03BCB9DC-8A7F-413F-8FE0-53F72A4114C8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\libs">
       <UniqueIdentifier>{C662DA50-940A-4614-A9E3-1DD6A4C5CF76}</UniqueIdentifier>
     </Filter>
@@ -77,6 +83,18 @@
     </ClInclude>
     <ClInclude Include="genres\GenreList.hpp">
       <Filter>Header Files\genres</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiClasses\GetControlsVector.hpp">
+      <Filter>Header Files\GuiClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiClasses\SControl.hpp">
+      <Filter>Header Files\GuiClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiClasses\SDimensions.h">
+      <Filter>Header Files\GuiClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiClasses\SMainWindow.hpp">
+      <Filter>Header Files\GuiClasses</Filter>
     </ClInclude>
     <ClInclude Include="libs\fmt\include\fmt\chrono.hpp">
       <Filter>Header Files\libs\fmt</Filter>
@@ -169,6 +187,15 @@
     </ClCompile>
     <ClCompile Include="genres\GenreList.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiClasses\GetControlsVector.cpp">
+      <Filter>Source Files\GuiClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiClasses\SMainWindow.cpp">
+      <Filter>Source Files\GuiClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiClasses\SControl.cpp">
+      <Filter>Source Files\GuiClasses</Filter>
     </ClCompile>
     <ClCompile Include="libs\fmt\src\format.cpp">
       <Filter>Source Files\libs\fmt</Filter>

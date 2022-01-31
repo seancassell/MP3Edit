@@ -10,6 +10,7 @@
 // PROJECT-SPECIFIC HEADERS:
 #include "MP3Edit.h"
 #include "ControlVars.h"
+#include "GuiClasses/GetControlsVector.hpp"
 
 
 /* ******************************* INTRINSICS ******************************* */
@@ -19,14 +20,26 @@
 
 
 /* ************************** CONSTEXPR CONSTANTS *************************** */
-constexpr size_t const kINSTRUCTION_SETS = 51ui64;
+constexpr static const size_t kCONTROL_VEC_SIZE = 23ui64;
 
 
 /* ************************ STATIC GLOBAL VARIABLES ************************* */
-// Text of Textboxes (EDIT):
-static std::string g_FileContents = "placeholder"s;
-static std::string g_cpuVendor    = "Vendor: "s;
-static std::string g_cpuBrand     = "Brand: "s;
+// Window controls:
+std::vector<SControl> g_Controls;
+
+/* Text of Textboxes (EDIT): */
+static std::string g_Title       = "placeholder"s;
+static std::string g_Artist      = "placeholder"s;
+static std::string g_Album       = "placeholder"s;
+static std::string g_Year        = "placeholder"s;
+static std::string g_Track       = "placeholder"s;
+static std::string g_Comment     = "placeholder"s;
+static std::string g_AlbumArtist = "placeholder"s;
+static std::string g_Composer    = "placeholder"s;
+static std::string g_DiscNumber  = "placeholder"s;
+
+/* Text of ComboBoxes (COMBOBOX): */
+static std::string g_Genre       = "placeholder"s;
 
 
 /* **************************** STATIC FUNCTIONS **************************** */
@@ -122,6 +135,9 @@ int APIENTRY WinMain(_In_     HINSTANCE hInstance,
 	//    - https://github.com/ysc3839/win32-darkmode/blob/master/win32-darkmode/win32-darkmode.cpp
 	//SetWindowTheme(hWnd, L"53545935", nullptr);
 	//SendMessageA(hWnd, WM_THEMECHANGED, 0, 0);
+
+	// Populate 'g_Controls':
+	g_Controls = Utils::GetControlsVector();
 	
 	// Initialize Common Controls:
 	INITCOMMONCONTROLSEX InitCtrlEx;
@@ -336,10 +352,16 @@ LRESULT CALLBACK MainWndProc(HWND   hWnd,
 				// SEE: https://stackoverflow.com/a/4495814
 				HWND hwLParam = reinterpret_cast<HWND>(lParam);
 				if ((hLblInstructions == hwLParam) 
-					|| (hLblCpuVendor == hwLParam) 
-					|| (hLblCpuBrand == hwLParam) 
-					|| (hLblSupported == hwLParam) 
-					|| (hLblUnsupported == hwLParam)) {
+					|| (hLblTitle == hwLParam) 
+					|| (hLblArtist == hwLParam) 
+					|| (hLblAlbum == hwLParam) 
+					|| (hLblYear == hwLParam) 
+					|| (hLblTrack == hwLParam) 
+					|| (hLblComment == hwLParam) 
+					|| (hLblAlbumArtist == hwLParam) 
+					|| (hLblGenre == hwLParam) 
+					|| (hLblComposer == hwLParam) 
+					|| (hLblDiscNumber == hwLParam)) {
 						static HBRUSH hBrush    = CreateSolidBrush(clrWhite);
 						static HDC    hdcStatic = reinterpret_cast<HDC>(wParam);
 						SetTextColor(hdcStatic, clrBlack);
@@ -353,9 +375,21 @@ LRESULT CALLBACK MainWndProc(HWND   hWnd,
 				// Parse the menu selections & button clicks:
 				int wmId = LOWORD(wParam);
 				switch (wmId) {
-					case IDM_APP_EXIT:
+					case IDM_FILE_OPEN:
+						break;
+					case IDM_FILE_SAVE:
+						break;
+					case IDM_FILE_SAVEAS:
+						break;
+					case IDM_FILE_EXIT:
 						//std::exit(EXIT_SUCCESS);
 						DestroyWindow(hWnd);
+						break;
+					case IDM_SETTINGS:
+						break;
+					case IDM_HELP_HELP:
+						break;
+					case IDM_HELP_CHECKFORUPDATE:
 						break;
 					case IDM_HELP_ABOUT:
 						{
@@ -519,53 +553,91 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 	
 	// Declare and initialise 7 'INT' variables that will hold the height (the 
 	// 'Y' coordinate) of the labels and textboxes:
-	constexpr static const size_t I32_ARRAY_SIZE = 7ui64;
+	constexpr static const size_t I32_ARRAY_SIZE = 11ui64;
 	std::array<size_t, I32_ARRAY_SIZE> arrYCoords;
-	arrYCoords.at(0) = (dipYCoord);
-	arrYCoords.at(1) = (dipYCoord);
-	arrYCoords.at(2) = (arrYCoords.at(1) + (dipLabelHeight));
-	arrYCoords.at(3) = (arrYCoords.at(2) + (dipLabelHeight));
-	arrYCoords.at(4) = (arrYCoords.at(3) + (dipLabelHeight));
-	arrYCoords.at(5) = (arrYCoords.at(4) + (dipTextboxHeight));
-	arrYCoords.at(6) = (arrYCoords.at(5) + (dipLabelHeight));
+	arrYCoords.at(0)  = (dipYCoord);
+	arrYCoords.at(1)  = (arrYCoords.at(0) + (dipLabelHeight));
+	size_t t_ = 2ui64;
+#pragma loop(hint_parallel(8))
+	for (size_t i = 2ui64; i < I32_ARRAY_SIZE; ++i) {
+		t_ = (i - 1ui64);
+		arrYCoords.at(i)  = (arrYCoords.at(t_) + (dipTextboxHeight));
+	}
 	
 	/*  ----------------    START OF DRAWING OF CONTROLS    ----------------  */
 	// [1] Labels (STATIC):
 	size_t LblInstructionsWidth    = (MAIN_WINDOW_WIDTH - (CONTROL_SEPARATOR * 2));
 	size_t dipLblInstructionsWidth = ConvertPixelsToDIPs(LblInstructionsWidth, hWnd);
-	//hLblInstructions = lDrawLabel(lblInstructions, 
-	//							  dipXCoord, 
-	//							  arrYCoords.at(0), 
-	//							  dipLblInstructionsWidth, 
-	//							  dipLabelHeight, 
-	//							  ID_LBL_INSTRUCTIONS);
-	hLblCpuVendor    = lDrawLabel(lblCpuVendor, 
+	hLblInstructions = lDrawLabel(lblInstructions, 
+								  dipXCoord, 
+								  arrYCoords.at(0), 
+								  dipLblInstructionsWidth, 
+								  dipLabelHeight, 
+								  ID_LBL_INSTRUCTIONS);
+	hLblTitle = lDrawLabel(lblTitle, 
 								  dipXCoord, 
 								  arrYCoords.at(1), 
 								  dipLabelWidth, 
 								  dipLabelHeight, 
-								  ID_LBL_CPU_VENDOR);
-	hLblCpuBrand     = lDrawLabel(lblCpuBrand, 
+								  ID_LBL_TITLE);
+	hLblArtist = lDrawLabel(lblArtist, 
 								  dipXCoord, 
 								  arrYCoords.at(2), 
 								  dipLabelWidth, 
 								  dipLabelHeight, 
-								  ID_LBL_CPU_BRAND);
-	hLblSupported    = lDrawLabel(lblSupported, 
+								  ID_LBL_ARTIST);
+	hLblAlbum = lDrawLabel(lblAlbum, 
 								  dipXCoord, 
 								  arrYCoords.at(3), 
 								  dipLabelWidth, 
 								  dipLabelHeight, 
-								  ID_LBL_SUPPORTED);
-	hLblUnsupported  = lDrawLabel(lblUnsupported, 
+								  ID_LBL_ALBUM);
+	hLblYear = lDrawLabel(lblYear, 
+								  dipXCoord, 
+								  arrYCoords.at(4), 
+								  dipLabelWidth, 
+								  dipLabelHeight, 
+								  ID_LBL_YEAR);
+	hLblTrack = lDrawLabel(lblTrack, 
 								  dipXCoord, 
 								  arrYCoords.at(5), 
 								  dipLabelWidth, 
 								  dipLabelHeight, 
-								  ID_LBL_UNSUPPORTED);
+								  ID_LBL_TRACK);
+	hLblComment = lDrawLabel(lblComment, 
+								  dipXCoord, 
+								  arrYCoords.at(6), 
+								  dipLabelWidth, 
+								  dipLabelHeight, 
+								  ID_LBL_COMMENT);
+	hLblAlbumArtist = lDrawLabel(lblAlbumArtist, 
+								  dipXCoord, 
+								  arrYCoords.at(7), 
+								  dipLabelWidth, 
+								  dipLabelHeight, 
+								  ID_LBL_ALBUMARTIST);
+	hLblGenre = lDrawLabel(lblGenre, 
+								  dipXCoord, 
+								  arrYCoords.at(8), 
+								  dipLabelWidth, 
+								  dipLabelHeight, 
+								  ID_LBL_GENRE);
+	hLblComposer = lDrawLabel(lblComposer, 
+								  dipXCoord, 
+								  arrYCoords.at(9), 
+								  dipLabelWidth, 
+								  dipLabelHeight, 
+								  ID_LBL_COMPOSER);
+	hLblDiscNumber = lDrawLabel(lblDiscNumber, 
+								  dipXCoord, 
+								  arrYCoords.at(10), 
+								  dipLabelWidth, 
+								  dipLabelHeight, 
+								  ID_LBL_DISCNUMBER);
+	
 	
 	// [2] Textboxes (EDIT):
-	hTxtSupported = lDrawTextbox(txtSupported, 
+	/* hTxtSupported = lDrawTextbox(txtSupported,
 								 dipXCoord, 
 								 arrYCoords.at(4), 
 								 dipTextboxWidth, 
@@ -576,7 +648,7 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 								   arrYCoords.at(6), 
 								   dipTextboxWidth, 
 								   dipTextboxHeight, 
-								   ID_TXT_UNSUPPORTED);
+								   ID_TXT_UNSUPPORTED); */
 	
 	// [3] Buttons (BUTTON):
 	
@@ -595,12 +667,10 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 	// Set the text of the labels, textboxes, ComboBoxes, and buttons:
 	/* Labels: */
 	SetWindowTextA(hLblInstructions, lblInstructions);
-	SetWindowTextA(hLblSupported,    lblSupported);
-	SetWindowTextA(hLblUnsupported,  lblUnsupported);
 	
 	/* Textboxes: */
-	SetWindowTextA(hTxtSupported,   txtSupported);
-	SetWindowTextA(hTxtUnsupported, txtUnsupported);
+	/* SetWindowTextA(hTxtSupported,   txtSupported);
+	SetWindowTextA(hTxtUnsupported, txtUnsupported); */
 	
 	/* Buttons: */
 	
@@ -610,24 +680,8 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 				 WM_SETFONT, 
 				 reinterpret_cast<WPARAM>(hfSegoeUI), 
 				 TRUE);
-	SendMessageA(hLblSupported, 
-				 WM_SETFONT, 
-				 reinterpret_cast<WPARAM>(hfSegoeUI), 
-				 TRUE);
-	SendMessageA(hLblUnsupported, 
-				 WM_SETFONT, 
-				 reinterpret_cast<WPARAM>(hfSegoeUI), 
-				 TRUE);
 	
 	/* Textboxes: */
-	SendMessageA(hTxtSupported, 
-				 WM_SETFONT, 
-				 reinterpret_cast<WPARAM>(hfSegoeUI), 
-				 TRUE);
-	SendMessageA(hTxtUnsupported, 
-				 WM_SETFONT, 
-				 reinterpret_cast<WPARAM>(hfSegoeUI), 
-				 TRUE);
 	
 	/* ComboBoxes: */
 	
@@ -649,16 +703,12 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 	SetWindowTheme(hWnd,            L"DarkMode_Explorer", nullptr);
 	
 	/* Textboxes: */
-	SetWindowTheme(hTxtSupported,   L"DarkMode_Explorer", nullptr);
-	SetWindowTheme(hTxtUnsupported, L"DarkMode_Explorer", nullptr);
 	
 	/* ComboBoxes: */
 	/* Buttons: */
 	
 	/* Textboxes: */
 	SendMessageA(hWnd,            WM_THEMECHANGED, 0, 0);
-	SendMessageA(hTxtSupported,   WM_THEMECHANGED, 0, 0);
-	SendMessageA(hTxtUnsupported, WM_THEMECHANGED, 0, 0);
 	
 	/* ComboBoxes: */
 	/* Buttons: */
@@ -804,6 +854,24 @@ BOOL APIENTRY EnableDialogTheme(HWND hWnd) {
 
 
 //
+//    FUNCTION: GetTextFromTextboxes()
+//    
+//    RETURNS:  VOID
+//    
+//    PURPOSE:  Retrieves the text from each textbox ('EDIT') and stores the 
+//              text in the textbox's global 'std::string' variable.
+//    
+//    COMMENTS: [To be added]
+//
+VOID APIENTRY GetTextFromTextboxes() {
+	// TODO: Implement this function.
+}
+
+
+/* -------------------------------------------------------------------------- */
+
+
+//
 //    FUNCTION: GetWindowTitle()
 //    
 //    RETURNS:  string (std::string)
@@ -910,7 +978,7 @@ UINT APIENTRY AddString(const HWND hCombo, const string& s) {
 //
 //    FUNCTION: GetFilenameFromDlg(HWND&)
 //    
-//    RETURNS:  void
+//    RETURNS:  VOID
 //    
 //    PURPOSE:  [To be added]
 //    
@@ -918,7 +986,7 @@ UINT APIENTRY AddString(const HWND hCombo, const string& s) {
 //
 // Displays a common dialog to get a filename:
 // SOURCE: https://msdn.microsoft.com/en-us/library/windows/desktop/ms646829(v=vs.85).aspx#open_file
-void APIENTRY GetFilenameFromDlg(HWND& hWnd) {
+VOID APIENTRY GetFilenameFromDlg(HWND& hWnd) {
 	try {
 		ZeroMemory(&ofn, sizeof(ofn));
 		ofn.lStructSize = sizeof(ofn);
@@ -991,13 +1059,13 @@ string APIENTRY DeduceFilename(std::string& str) {
 //
 //    FUNCTION: DoesFileExist(std::string&)
 //    
-//    RETURNS:  bool
+//    RETURNS:  BOOL
 //    
 //    PURPOSE:  Checks to see if the specified filename exists.
 //    
 //    COMMENTS: [To be added]
 //
-bool APIENTRY DoesFileExist(std::string& target) {
+BOOL APIENTRY DoesFileExist(std::string& target) {
 	fs::path _path(target);
 	if (fs::exists(_path) && fs::is_regular_file(_path)) {
 		return true;

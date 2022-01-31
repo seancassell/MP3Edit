@@ -70,6 +70,7 @@
 #include "Utilities.hpp"
 #include "data/Strings.hpp"
 #include "genres/GenreList.hpp"
+#include "GuiClasses/SMainWindow.hpp"
 #include "res/Resources.h"
 
 
