@@ -1,0 +1,11 @@
+Update the values of the tags, and then press the "Save" button:
+Title:
+Artist:
+Album:
+Year:
+Track:
+Comment:
+Album Artist:
+Genre:
+Composer:
+Disc Number:

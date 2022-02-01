@@ -28,6 +28,16 @@ enum class SType {
 };
 
 
+/* ******************************* CONSTANTS ******************************** */
+namespace Styles {
+	const DWORD ButtonStyle   = WS_TABSTOP|WS_VISIBLE|WS_CHILD|BS_TEXT|BS_FLAT;
+	const DWORD ComboBoxStyle = WS_CHILD|WS_TABSTOP|WS_VISIBLE|CBS_DROPDOWN;
+	const DWORD EditStyle     = WS_TABSTOP|WS_BORDER|WS_VISIBLE|WS_CHILD|ES_LEFT;
+	const DWORD ImageStyle    = WS_CHILD|WS_VISIBLE|SS_BITMAP;
+	const DWORD LabelStyle    = WS_EX_TRANSPARENT|WS_VISIBLE|WS_CHILD;
+}
+
+
 /* *************************** CLASS DECLARATION **************************** */
 class SControl {
 	

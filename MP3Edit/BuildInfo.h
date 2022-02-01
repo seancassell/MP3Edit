@@ -11,9 +11,9 @@
 
 /* ************************ PREPROCESSOR DEFINITIONS ************************ */
 // These are used by MediaManager.rc to set the version information:
-#define VER_FILEVERSION             1,1,31,7
-#define VER_FILEVERSION_STR         "1.1.031.7"
-#define VER_PRODUCTVERSION          1,1,31,7
-#define VER_PRODUCTVERSION_STR      "1.1.031.7"
+#define VER_FILEVERSION             1,1,32,9
+#define VER_FILEVERSION_STR         "1.1.032.9"
+#define VER_PRODUCTVERSION          1,1,32,9
+#define VER_PRODUCTVERSION_STR      "1.1.032.9"
 
-#define VER_ABOUT_DLG_STR           "Version 1.1.031.7"
+#define VER_ABOUT_DLG_STR           "Version 1.1.032.9"

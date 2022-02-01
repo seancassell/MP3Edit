@@ -39,6 +39,9 @@
 #include <cstdlib>
 #include <cstring>
 
+// COMPILER INTRINSICS HEADERS:
+#include <intrin.h>
+
 // WINDOWS SDK HEADERS:
 // For a list and description of child header files included by <Windows.h>, see
 // the following entry on Wikipedia: https://en.wikipedia.org/wiki/Windows.h
@@ -92,10 +95,10 @@ constexpr static const INT     STARTUP_Y_COORD       =    32i32;
 constexpr static const INT     CONTROL_SEPARATOR     =    16i32;
 constexpr static const INT     LABEL_WIDTH           =   128i32;
 constexpr static const INT     LABEL_HEIGHT          =    32i32;
-constexpr static const INT     TEXTBOX_WIDTH2        =   128i32;
+constexpr static const INT     TEXTBOX_WIDTH         =   384i32;
 constexpr static const INT     TEXTBOX_HEIGHT        =    32i32;
+constexpr static const INT     DROPDOWN_WIDTH        =   384i32;
 constexpr static const INT     DROPDOWN_HEIGHT       =    32i32;
-constexpr static const INT     DROPDOWN_WIDTH        =    32i32;
 constexpr static const INT     BUTTON_WIDTH_WIDE     =   160i32;
 constexpr static const INT     BUTTON_WIDTH          =   100i32;
 constexpr static const INT     BUTTON_WIDTH_NARROW   =    72i32;
@@ -105,4 +108,4 @@ constexpr static const INT     IMAGE_HEIGHT          =    32i32;
 
 
 /* ******************************* DATA TYPES ******************************* */
-typedef HRESULT (WINAPI * ETDTProc) (HWND, DWORD);
+//typedef HRESULT (WINAPI * ETDTProc) (HWND, DWORD);

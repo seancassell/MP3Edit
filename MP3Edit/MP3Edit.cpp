@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 // PROJECT NAME:  MP3Edit
-// COPYRIGHT:     Copyright © 2021 Sean Cassell <sean.cassell@outlook.com>
+// COPYRIGHT:     Copyright © 2022 Sean Cassell <sean.cassell@outlook.com>
 // FILENAME:      MP3Edit.cpp
 // FILE PURPOSE:  Contains the program entry point and some of the functions 
 //                that control program operation.
@@ -25,7 +25,7 @@ constexpr static const size_t kCONTROL_VEC_SIZE = 23ui64;
 
 /* ************************ STATIC GLOBAL VARIABLES ************************* */
 // Window controls:
-std::vector<SControl> g_Controls;
+std::vector<SControl> g_vecControls;
 
 /* Text of Textboxes (EDIT): */
 static std::string g_Title       = "placeholder"s;
@@ -135,9 +135,9 @@ int APIENTRY WinMain(_In_     HINSTANCE hInstance,
 	//    - https://github.com/ysc3839/win32-darkmode/blob/master/win32-darkmode/win32-darkmode.cpp
 	//SetWindowTheme(hWnd, L"53545935", nullptr);
 	//SendMessageA(hWnd, WM_THEMECHANGED, 0, 0);
-
-	// Populate 'g_Controls':
-	g_Controls = Utils::GetControlsVector();
+	
+	// Populate 'g_vecControls':
+	g_vecControls = Utils::GetControlsVector();
 	
 	// Initialize Common Controls:
 	INITCOMMONCONTROLSEX InitCtrlEx;
@@ -485,6 +485,45 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 	
 	// Define a lambda that will create a label ('STATIC'), one that will create
 	// a textbox ('EDIT'), and one that will create a 'ComboBox' window control:
+	auto lDrawSControl = [&](SControl& ctl_)->void {
+		SDimensions dim_       = ctl_.m_Dimensions;
+		string      ClassType_ = "";
+		switch (ctl_.m_Type) {
+			case SType::Button:
+				ClassType_ = "BUTTON";
+				break;
+			case SType::ComboBox:
+				ClassType_ = "COMBOBOX";
+				break;
+			case SType::Edit:
+				ClassType_ = "EDIT";
+				break;
+			case SType::Image:
+				ClassType_ = "STATIC";
+				break;
+			case SType::Label:
+				ClassType_ = "STATIC";
+				break;
+			default:
+				ClassType_ = "STATIC";
+				break;
+		}
+		LPCSTR      szCtlType  = ClassType_.c_str();
+		HWND        hWndSControl = CreateWindowA(szCtlType, 
+												 ctl_.m_ClassName, 
+												 ctl_.m_Style, 
+												 dim_.Top, 
+												 dim_.Left, 
+												 dim_.Width, 
+												 dim_.Height, 
+												 hWnd, 
+												 RC_MENU(ctl_.m_ID), 
+												 hInst, 
+												 nullptr);
+		ctl_.m_Handle = hWndSControl;
+		//return hWndSControl;
+	};
+	
 	auto lDrawButton = [&](LPSTR lpWindowName, INT X_, INT Y_, INT nWidth, 
 						   INT   nHeight,      INT hID)->HWND {
 		HWND hWndButton = CreateWindowA("BUTTON", 
@@ -564,9 +603,14 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 		arrYCoords.at(i)  = (arrYCoords.at(t_) + (dipTextboxHeight));
 	}
 	
+	// Draw the controls defined in 'g_vecControls':
+	for (SControl& ctl_ : g_vecControls) {
+		lDrawSControl(ctl_);
+	}
+	
 	/*  ----------------    START OF DRAWING OF CONTROLS    ----------------  */
 	// [1] Labels (STATIC):
-	size_t LblInstructionsWidth    = (MAIN_WINDOW_WIDTH - (CONTROL_SEPARATOR * 2));
+	/* size_t LblInstructionsWidth    = (MAIN_WINDOW_WIDTH - (CONTROL_SEPARATOR * 2));
 	size_t dipLblInstructionsWidth = ConvertPixelsToDIPs(LblInstructionsWidth, hWnd);
 	hLblInstructions = lDrawLabel(lblInstructions, 
 								  dipXCoord, 
@@ -633,7 +677,7 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 								  arrYCoords.at(10), 
 								  dipLabelWidth, 
 								  dipLabelHeight, 
-								  ID_LBL_DISCNUMBER);
+								  ID_LBL_DISCNUMBER); */
 	
 	
 	// [2] Textboxes (EDIT):

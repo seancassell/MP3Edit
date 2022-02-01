@@ -76,7 +76,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalOptions>/time /VERSION:"31.7" /HIGHENTROPYVA %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/time /VERSION:"32.9" /HIGHENTROPYVA %(AdditionalOptions)</AdditionalOptions>
       <SuppressStartupBanner>false</SuppressStartupBanner>
     </Link>
     <PreBuildEvent>
@@ -116,7 +116,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalOptions>/time /VERSION:"31.7" /HIGHENTROPYVA %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/time /VERSION:"32.9" /HIGHENTROPYVA %(AdditionalOptions)</AdditionalOptions>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <SetChecksum>true</SetChecksum>
       <SuppressStartupBanner>false</SuppressStartupBanner>

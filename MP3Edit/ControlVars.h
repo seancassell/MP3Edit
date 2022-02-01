@@ -103,7 +103,6 @@ CHAR btnCancel[7]               = "Cancel";
 /* ************************** CONSTEXPR CONSTANTS *************************** */
 // Labels (STATIC):
 constexpr INT ID_LBL_INSTRUCTIONS       = 1010i32;
-constexpr INT ID_LBL_INSTRUCTIONS       = 1010i32;
 constexpr INT ID_LBL_TITLE              = 1011i32;
 constexpr INT ID_LBL_ARTIST             = 1012i32;
 constexpr INT ID_LBL_ALBUM              = 1013i32;

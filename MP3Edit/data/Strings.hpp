@@ -24,7 +24,7 @@ namespace str {
 	
 	// Program information;
 	const std::string PROGRAM_NAME      = "MP3Edit"s;
-	const std::string PROGRAM_VERSION   = "1.1.031.7"s;
+	const std::string PROGRAM_VERSION   = "1.1.032.9"s;
 	const std::string BUILD_NUMBER      = VAL_VER_BUILDNUM_S;
 	const std::string PROGRAM_DESCRIPT  = 
 		"Native Win32 GUI program to easily edit the ID3 metadata tags of MP3s."s;

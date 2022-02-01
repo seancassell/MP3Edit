@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 // PROJECT NAME:  MP3Edit
-// COPYRIGHT:     Copyright © 2021 Sean Cassell <sean.cassell@outlook.com>
+// COPYRIGHT:     Copyright © 2022 Sean Cassell <sean.cassell@outlook.com>
 // FILENAME:      GenreList.cpp
 // FILE PURPOSE:  Defines a function that provides a vector of genres.
 

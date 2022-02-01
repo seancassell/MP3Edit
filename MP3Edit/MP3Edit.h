@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 // PROJECT NAME:  MP3Edit
-// COPYRIGHT:     Copyright © 2021 Sean Cassell <sean.cassell@outlook.com>
+// COPYRIGHT:     Copyright © 2022 Sean Cassell <sean.cassell@outlook.com>
 // FILENAME:      MP3Edit.h
 // FILE PURPOSE:  Declares the function prototypes, etc. that are used by the 
 //                program.
@@ -33,43 +33,13 @@ constexpr const INT BUTTON_HEIGHT       =  64i32;
 constexpr const INT IMAGE_WIDTH         =  32i32;
 constexpr const INT IMAGE_HEIGHT        =  32i32; */
 //constexpr const INT MAIN_WINDOW_WIDTH        = 512i32; // TODO: Was 448
-constexpr const INT MAIN_WINDOW_WIDTH   = 544i32;
-//constexpr const INT MAIN_WINDOW_HEIGHT       = 320i32;
+constexpr const INT MAIN_WINDOW_WIDTH   = 560i32;
 constexpr const INT MAIN_WINDOW_HEIGHT{
 	(CONTROL_SEPARATOR * 12i32) 
-	+ LABEL_HEIGHT 
-	+ (TEXTBOX_HEIGHT * 8i32) 
-	+ (BUTTON_HEIGHT << 1) 
+	+ (LABEL_HEIGHT) 
+	+ (TEXTBOX_HEIGHT * 9i32) 
+	+ (DROPDOWN_HEIGHT) 
 	+ CONTROL_SEPARATOR
-};
-/* constexpr const INT MAIN_WINDOW_HEIGHT{
-	// Formula:
-	//  Note: There is a 'CONTROL_SEPARATOR' on the top and the bottom of the 
-	//        window; there is also a 'CONTROL_SEPARATOR' below each control. 
-	//        The 'CONTROL_SEPARATOR' below the 2 buttons doubles as the one at 
-	//        the bottom of the window.
-	//  (CONTROL_SEPARATOR) 
-	//    + (TEXTBOX_HEIGHT * 7) + (CONTROL_SEPARATOR * 7) 
-	//    + (DROPDOWN_HEIGHT)    + (CONTROL_SEPARATOR * 1) 
-	//    + (TEXTBOX_HEIGHT * 2) + (CONTROL_SEPARATOR * 2) 
-	//    + (BUTTON_HEIGHT)      + (CONTROL_SEPARATOR * 1)
-	(CONTROL_SEPARATOR * 1i32) 
-		+ ((TEXTBOX_HEIGHT  * 7i32) + (CONTROL_SEPARATOR * 7i32)) 
-		+ ((DROPDOWN_HEIGHT * 1i32) + (CONTROL_SEPARATOR * 1i32)) 
-		+ ((TEXTBOX_HEIGHT  * 2i32) + (CONTROL_SEPARATOR * 2i32)) 
-		+ ((BUTTON_HEIGHT   * 2i32) + (CONTROL_SEPARATOR * 2i32)) 
-		+ 16i32
-}; */
-//constexpr const INT TEXTBOX_WIDTH       = (MAIN_WINDOW_WIDTH - (48i32 + 8i32));
-constexpr const INT TEXTBOX_WIDTH{
-	// Width of window - (control separator + width of label + control separator
-	// on both sides of the textbox):
-	// NOTE: '(CONTROL_SEPARATOR * 2i32)' == '(CONTROL_SEPARATOR << 1i32)'
-	LABEL_WIDTH
-};
-constexpr static const INT DROPDOWN_WIDTH2{
-	// Same width as the textboxes, calculated per the formula outlined above
-	TEXTBOX_WIDTH
 };
 constexpr const ULONG HEAP_TYPE_STANDARD{0ui32};
 constexpr const ULONG HEAP_TYPE_LAL{1ui32};
