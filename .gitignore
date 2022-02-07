@@ -12,6 +12,8 @@
 *.sln.docstates
 config.txt
 GUIDs.txt
+notes.txt
+notes_2.txt
 
 
 # User-specific directories:
