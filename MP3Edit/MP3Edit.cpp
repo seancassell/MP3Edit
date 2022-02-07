@@ -289,7 +289,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 						 dipWinXCoord, 
 						 dipWinYCoord, 
 						 dipWinWidth, 
-						 dipWinHeightV3, 
+						 dipWinHeight, 
 						 nullptr, 
 						 nullptr, 
 						 hInstance, 
@@ -351,7 +351,7 @@ LRESULT CALLBACK MainWndProc(HWND   hWnd,
 				// be transparent:
 				// SEE: https://stackoverflow.com/a/4495814
 				HWND hwLParam = reinterpret_cast<HWND>(lParam);
-				if ((hLblInstructions == hwLParam) 
+				if ((hLblInstructions == hwLParam)
 					|| (hLblTitle == hwLParam) 
 					|| (hLblArtist == hwLParam) 
 					|| (hLblAlbum == hwLParam) 
@@ -384,6 +384,8 @@ LRESULT CALLBACK MainWndProc(HWND   hWnd,
 					case IDM_FILE_EXIT:
 						//std::exit(EXIT_SUCCESS);
 						DestroyWindow(hWnd);
+						break;
+					case IDM_BATCH_TOOLS:
 						break;
 					case IDM_SETTINGS:
 						break;
@@ -441,6 +443,8 @@ LRESULT CALLBACK MainWndProc(HWND   hWnd,
 /* -------------------------------------------------------------------------- */
 
 
+#pragma warning(push)
+#pragma warning(disable : 4312)
 //
 //    FUNCTION: OnCreate(const HWND, CREATESTRUCT*)
 //    
@@ -475,7 +479,7 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 	int32_t dipTextboxWidth   = ConvertPixelsToDIPs(TEXTBOX_WIDTH,       hWnd);
 	int32_t dipTextboxHeight  = ConvertPixelsToDIPs(TEXTBOX_HEIGHT,      hWnd);
 	int32_t dipComboBoxHeight = ConvertPixelsToDIPs(DROPDOWN_HEIGHT,     hWnd);
-	int32_t dipComboBoxWidth  = ConvertPixelsToDIPs(DROPDOWN_WIDTH2,     hWnd);
+	int32_t dipComboBoxWidth  = ConvertPixelsToDIPs(DROPDOWN_WIDTH,      hWnd);
 	int32_t dipButtonWidthN   = ConvertPixelsToDIPs(BUTTON_WIDTH_NARROW, hWnd);
 	int32_t dipButtonWidth    = ConvertPixelsToDIPs(BUTTON_WIDTH,        hWnd);
 	int32_t dipButtonWidthW   = ConvertPixelsToDIPs(BUTTON_WIDTH_WIDE,   hWnd);
@@ -512,8 +516,8 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 		HWND        hWndSControl = CreateWindowA(szCtlType, 
 												 ctl_.m_ClassName, 
 												 ctl_.m_Style, 
-												 dim_.Top, 
 												 dim_.Left, 
+												 dim_.Top, 
 												 dim_.Width, 
 												 dim_.Height, 
 												 hWnd, 
@@ -604,117 +608,26 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 	}
 	
 	// Draw the controls defined in 'g_vecControls':
+	SControl ddl_Genre;
 	for (SControl& ctl_ : g_vecControls) {
-		lDrawSControl(ctl_);
+		lDrawSControl(std::ref(ctl_));
+		if (ctl_.m_ID == 1410) {
+			ddl_Genre.m_Handle = ctl_.m_Handle;
+		}
 	}
 	
 	/*  ----------------    START OF DRAWING OF CONTROLS    ----------------  */
 	// [1] Labels (STATIC):
-	/* size_t LblInstructionsWidth    = (MAIN_WINDOW_WIDTH - (CONTROL_SEPARATOR * 2));
-	size_t dipLblInstructionsWidth = ConvertPixelsToDIPs(LblInstructionsWidth, hWnd);
-	hLblInstructions = lDrawLabel(lblInstructions, 
-								  dipXCoord, 
-								  arrYCoords.at(0), 
-								  dipLblInstructionsWidth, 
-								  dipLabelHeight, 
-								  ID_LBL_INSTRUCTIONS);
-	hLblTitle = lDrawLabel(lblTitle, 
-								  dipXCoord, 
-								  arrYCoords.at(1), 
-								  dipLabelWidth, 
-								  dipLabelHeight, 
-								  ID_LBL_TITLE);
-	hLblArtist = lDrawLabel(lblArtist, 
-								  dipXCoord, 
-								  arrYCoords.at(2), 
-								  dipLabelWidth, 
-								  dipLabelHeight, 
-								  ID_LBL_ARTIST);
-	hLblAlbum = lDrawLabel(lblAlbum, 
-								  dipXCoord, 
-								  arrYCoords.at(3), 
-								  dipLabelWidth, 
-								  dipLabelHeight, 
-								  ID_LBL_ALBUM);
-	hLblYear = lDrawLabel(lblYear, 
-								  dipXCoord, 
-								  arrYCoords.at(4), 
-								  dipLabelWidth, 
-								  dipLabelHeight, 
-								  ID_LBL_YEAR);
-	hLblTrack = lDrawLabel(lblTrack, 
-								  dipXCoord, 
-								  arrYCoords.at(5), 
-								  dipLabelWidth, 
-								  dipLabelHeight, 
-								  ID_LBL_TRACK);
-	hLblComment = lDrawLabel(lblComment, 
-								  dipXCoord, 
-								  arrYCoords.at(6), 
-								  dipLabelWidth, 
-								  dipLabelHeight, 
-								  ID_LBL_COMMENT);
-	hLblAlbumArtist = lDrawLabel(lblAlbumArtist, 
-								  dipXCoord, 
-								  arrYCoords.at(7), 
-								  dipLabelWidth, 
-								  dipLabelHeight, 
-								  ID_LBL_ALBUMARTIST);
-	hLblGenre = lDrawLabel(lblGenre, 
-								  dipXCoord, 
-								  arrYCoords.at(8), 
-								  dipLabelWidth, 
-								  dipLabelHeight, 
-								  ID_LBL_GENRE);
-	hLblComposer = lDrawLabel(lblComposer, 
-								  dipXCoord, 
-								  arrYCoords.at(9), 
-								  dipLabelWidth, 
-								  dipLabelHeight, 
-								  ID_LBL_COMPOSER);
-	hLblDiscNumber = lDrawLabel(lblDiscNumber, 
-								  dipXCoord, 
-								  arrYCoords.at(10), 
-								  dipLabelWidth, 
-								  dipLabelHeight, 
-								  ID_LBL_DISCNUMBER); */
-	
-	
 	// [2] Textboxes (EDIT):
-	/* hTxtSupported = lDrawTextbox(txtSupported,
-								 dipXCoord, 
-								 arrYCoords.at(4), 
-								 dipTextboxWidth, 
-								 dipTextboxHeight, 
-								 ID_TXT_SUPPORTED);
-	hTxtUnsupported = lDrawTextbox(txtUnsupported, 
-								   dipXCoord, 
-								   arrYCoords.at(6), 
-								   dipTextboxWidth, 
-								   dipTextboxHeight, 
-								   ID_TXT_UNSUPPORTED); */
-	
 	// [3] Buttons (BUTTON):
 	
 	/*   ----------------    END OF DRAWING OF CONTROLS    ----------------   */
-	/*  ----------------    START OF LOADING ICONS    ----------------  */
-	/* HBITMAP iconAudiobooks{
-		static_cast<HBITMAP>(::LoadImageA(::GetModuleHandleA(nullptr), 
-										  MAKEINTRESOURCEA(IDB_BMP_AUDIOBOOK_32PX), 
-										  IMAGE_BITMAP, 
-										  32i32, 
-										  32i32, 
-										  0x0ui32))
-	}; */
-	/*  ----------------    END OF LOADING ICONS    ----------------  */
 	
 	// Set the text of the labels, textboxes, ComboBoxes, and buttons:
 	/* Labels: */
-	SetWindowTextA(hLblInstructions, lblInstructions);
+	//SetWindowTextA(hLblInstructions, lblInstructions);
 	
 	/* Textboxes: */
-	/* SetWindowTextA(hTxtSupported,   txtSupported);
-	SetWindowTextA(hTxtUnsupported, txtUnsupported); */
 	
 	/* Buttons: */
 	
@@ -724,20 +637,56 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 				 WM_SETFONT, 
 				 reinterpret_cast<WPARAM>(hfSegoeUI), 
 				 TRUE);
+	SendMessageA(hLblTitle, 
+				 WM_SETFONT, 
+				 reinterpret_cast<WPARAM>(hfSegoeUI), 
+				 TRUE);
+	SendMessageA(hLblArtist, 
+				 WM_SETFONT, 
+				 reinterpret_cast<WPARAM>(hfSegoeUI), 
+				 TRUE);
+	SendMessageA(hLblAlbum, 
+				 WM_SETFONT, 
+				 reinterpret_cast<WPARAM>(hfSegoeUI), TRUE);
+	SendMessageA(hLblYear, 
+				 WM_SETFONT, 
+				 reinterpret_cast<WPARAM>(hfSegoeUI), 
+				 TRUE);
+	SendMessageA(hLblTrack, 
+				 WM_SETFONT, 
+				 reinterpret_cast<WPARAM>(hfSegoeUI), 
+				 TRUE);
+	SendMessageA(hLblComment, 
+				 WM_SETFONT, 
+				 reinterpret_cast<WPARAM>(hfSegoeUI), 
+				 TRUE);
+	SendMessageA(hLblAlbumArtist, 
+				 WM_SETFONT, 
+				 reinterpret_cast<WPARAM>(hfSegoeUI), 
+				 TRUE);
+	SendMessageA(hLblGenre, 
+				 WM_SETFONT, 
+				 reinterpret_cast<WPARAM>(hfSegoeUI), 
+				 TRUE);
+	SendMessageA(hLblComposer, 
+				 WM_SETFONT, 
+				 reinterpret_cast<WPARAM>(hfSegoeUI), 
+				 TRUE);
+	SendMessageA(hLblDiscNumber, 
+				 WM_SETFONT, 
+				 reinterpret_cast<WPARAM>(hfSegoeUI), 
+				 TRUE);
+
 	
 	/* Textboxes: */
 	
 	/* ComboBoxes: */
-	
+	SendMessageA(hDdlGenre, 
+				 WM_SETFONT, 
+				 reinterpret_cast<WPARAM>(hfSegoeUI), 
+				 TRUE);
+
 	/* Buttons: */
-	
-	// Set the icon on each button:
-	/* ::SendMessageA(btnAudiobooks,  BM_SETIMAGE, IMAGE_ICON, (LPARAM)iconAudiobooks);
-	::SendMessageA(btnMovies,      BM_SETIMAGE, IMAGE_ICON, (LPARAM)iconMovies);
-	::SendMessageA(hBtnAudiobooks,  
-				   BM_SETIMAGE, 
-				   IMAGE_BITMAP, 
-				   reinterpret_cast<LPARAM>(iconAudiobooks)); */
 	
 	// Based off of the following StackOverflow answer, attempt to enable the 
 	// dark Windows 10 theme for the window:
@@ -749,18 +698,29 @@ INT APIENTRY OnCreate(const HWND hWnd, CREATESTRUCT* cs) {
 	/* Textboxes: */
 	
 	/* ComboBoxes: */
+	SetWindowTheme(hDdlGenre, L"DarkMode_Explorer", nullptr);
+	SendMessageA(hDdlGenre, WM_THEMECHANGED, 0, 0);
+
 	/* Buttons: */
 	
 	/* Textboxes: */
 	SendMessageA(hWnd,            WM_THEMECHANGED, 0, 0);
-	
-	/* ComboBoxes: */
-	/* Buttons: */
+
 	/*    ----------------    END OF ENABLING DARK MODE   ----------------    */
 	
+	// Populate 'ddlGenre':
+	std::vector<_Genre> vecGenres = getGenreList();
+	std::string         genre     = "";
+	UINT                resAddStr = 0ui32;
+	for (_Genre& gnr_ : vecGenres) {
+		genre = gnr_._value;
+		resAddStr = AddString(ddl_Genre.m_Handle, std::ref(genre));
+	}
+
 	// Return 0 to the calling function:
 	return 0i32;
 }
+#pragma warning(pop)
 
 
 /* -------------------------------------------------------------------------- */
@@ -781,7 +741,7 @@ INT_PTR CALLBACK AboutDialogProc(HWND   hDlg,   UINT   message,
 		case WM_INITDIALOG:
 			return static_cast<INT_PTR>(TRUE);
 		case WM_COMMAND:
-			if ((LOWORD(wParam) == IDOK) || (LOWORD(wParam) == IDCANCEL)) {
+			if ((LOWORD(wParam) == IDOK)) {
 				EndDialog(hDlg, LOWORD(wParam));
 				return static_cast<INT_PTR>(TRUE);
 			}
@@ -908,7 +868,97 @@ BOOL APIENTRY EnableDialogTheme(HWND hWnd) {
 //    COMMENTS: [To be added]
 //
 VOID APIENTRY GetTextFromTextboxes() {
-	// TODO: Implement this function.
+	// Allocate memory for 2 buffers that will hold the string retrieved from 
+	// each textbox:
+	constexpr const size_t BuffSize{
+		MAX_LOADSTRING + 1ui64
+	};
+	static LPSTR lpTitle       = new (std::nothrow) char[BuffSize]();
+	static LPSTR lpArtist      = new (std::nothrow) char[BuffSize]();
+	static LPSTR lpAlbum       = new (std::nothrow) char[BuffSize]();
+	static LPSTR lpYear        = new (std::nothrow) char[BuffSize]();
+	static LPSTR lpTrack       = new (std::nothrow) char[BuffSize]();
+	static LPSTR lpComment     = new (std::nothrow) char[BuffSize]();
+	static LPSTR lpAlbumArtist = new (std::nothrow) char[BuffSize]();
+	static LPSTR lpComposer    = new (std::nothrow) char[BuffSize]();
+	static LPSTR lpDiscNumber  = new (std::nothrow) char[BuffSize]();
+	static LPSTR lpGenre       = new (std::nothrow) char[BuffSize]();
+	if ((lpTitle == nullptr) 
+		|| (lpArtist == nullptr) 
+		|| (lpAlbum == nullptr) 
+		|| (lpYear == nullptr) 
+		|| (lpTrack == nullptr) 
+		|| (lpComment == nullptr) 
+		|| (lpAlbumArtist == nullptr) 
+		|| (lpComposer == nullptr) 
+		|| (lpDiscNumber == nullptr) 
+		|| (lpGenre == nullptr)) {
+		// Error: Cannot retrieve textbox values
+		static std::string msg_{
+			"Cannot retrieve textbox values; an error "
+			"occurred while allocating storage buffers."s
+		};
+		ShowErrorMessage(std::ref(msg_));
+		return;
+	}
+	
+	//// Get the values from each of the 2 textboxes:
+	//int32_t iFName = GetWindowTextA(hTxtFilename, lpFilename, BuffSize);
+	//if (iFName == 0i32) {
+	//	// Error: No text was retrieved from 'txtFilename'
+	//}
+	int32_t rTitle    = GetWindowTextA(hTxtTitle,      lpTitle,       MAX_LOADSTRING);
+	int32_t rArtist   = GetWindowTextA(hTxtArtist,     lpArtist,      MAX_LOADSTRING);
+	int32_t rAlbum    = GetWindowTextA(hTxtAlbum,      lpAlbum,       MAX_LOADSTRING);
+	int32_t rYear     = GetWindowTextA(hTxtYear,       lpYear,        MAX_LOADSTRING);
+	int32_t rTrack    = GetWindowTextA(hTxtTrack,      lpTrack,       MAX_LOADSTRING);
+	int32_t rComment  = GetWindowTextA(hTxtComment,    lpComment,     MAX_LOADSTRING);
+	int32_t rAlbArt   = GetWindowTextA(hTxtAlbumArtist,lpAlbumArtist, MAX_LOADSTRING);
+	int32_t rComposer = GetWindowTextA(hTxtComposer,   lpComposer,    MAX_LOADSTRING);
+	int32_t rDiscNum  = GetWindowTextA(hTxtDiscNumber, lpDiscNumber,  MAX_LOADSTRING);
+	int32_t rGenre    = GetWindowTextA(hDdlGenre,      lpGenre,       MAX_LOADSTRING);
+	if ((rTitle == 0i32) 
+		|| (rArtist == 0i32) 
+		|| (rAlbum == 0i32) 
+		|| (rYear == 0i32) 
+		|| (rTrack == 0i32) 
+		|| (rComment == 0i32) 
+		|| (rAlbArt == 0i32) 
+		|| (rComposer == 0i32) 
+		|| (rDiscNum == 0i32) 
+		|| (rGenre == 0i32)) {
+		// Error: Cannot retrieve textbox values
+		static std::string msg_{
+			"an error occurred while retrieving the values from the textboxes."
+		};
+		ShowErrorMessage(std::ref(msg_));
+		return;
+	}
+	
+	//// Clear 'g_SelectedFile' and 'g_String' of their existing contents:
+	g_Title.clear();
+	g_Artist.clear();
+	g_Album.clear();
+	g_Year.clear();
+	g_Track.clear();
+	g_Comment.clear();
+	g_AlbumArtist.clear();
+	g_Composer.clear();
+	g_DiscNumber.clear();
+	g_Genre.clear();
+	
+	// Copy the values from each 'LPSTR' buffer into its respective 
+	// 'std::string' variable:
+	g_Title       = lpTitle;
+	g_Artist      = lpArtist;
+	g_Album       = lpAlbum;
+	g_Year        = lpYear;
+	g_Track       = lpTrack;
+	g_Comment     = lpComment;
+	g_AlbumArtist = lpAlbumArtist;
+	g_Composer    = lpComposer;
+	g_DiscNumber  = lpDiscNumber;
+	g_Genre       = lpGenre;
 }
 
 
@@ -945,9 +995,9 @@ string APIENTRY GetWindowTitle() noexcept {
 
 
 //
-//    FUNCTION: ()
+//    FUNCTION: DisplayWin32ApiError(WORD, LPSTR, const char*)
 //    
-//    RETURNS:  
+//    RETURNS:  VOID
 //    
 //    PURPOSE:  [To be added]
 //    
@@ -1031,50 +1081,34 @@ UINT APIENTRY AddString(const HWND hCombo, const string& s) {
 // Displays a common dialog to get a filename:
 // SOURCE: https://msdn.microsoft.com/en-us/library/windows/desktop/ms646829(v=vs.85).aspx#open_file
 VOID APIENTRY GetFilenameFromDlg(HWND& hWnd) {
-	try {
-		ZeroMemory(&ofn, sizeof(ofn));
-		ofn.lStructSize = sizeof(ofn);
-		ofn.hwndOwner = hWnd;
-		ofn.lpstrFile = szFilePath;
+	SecureZeroMemory(&ofn, sizeof ofn);
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner   = hWnd;
+	ofn.lpstrFile   = szFilePath;
+	
+	// Set 'lpstrFile[0]' to '\0' so that 'GetOpenFileName()' does not use the 
+	// contents of 'szFile' to initialize itself:
+	ofn.lpstrFile[0]    = '\0';
+	ofn.nMaxFile        = sizeof(szFilePath);
+	ofn.lpstrFilter     = "MP3s(.mp3)\0.mp3\0All Files\0*.*\0";
+	ofn.nFilterIndex    = 1;
+	ofn.lpstrFileTitle  = nullptr;
+	ofn.nMaxFileTitle   = 0;
+	ofn.lpstrInitialDir = nullptr;
+	ofn.Flags           = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+	
+	// Display the Open dialog box:
+	if (GetOpenFileNameA(&ofn) == TRUE) {
+		hfOpenFileDlg = CreateFileA(ofn.lpstrFilter, 
+									GENERIC_READ, 
+									0, 
+									static_cast<LPSECURITY_ATTRIBUTES>(nullptr),
+									OPEN_EXISTING, 
+									FILE_ATTRIBUTE_NORMAL, 
+									static_cast<HANDLE>(nullptr));
 		
-		// Set lpstrFile[0] to '\0' so that GetOpenFileName does not
-		// use the contents of szFile to initialize itself:
-		ofn.lpstrFile[0] = '\0';
-		ofn.nMaxFile = sizeof(szFilePath);
-		ofn.lpstrFilter = "All\0*.*\0";
-		ofn.nFilterIndex = 1;
-		ofn.lpstrFileTitle = NULL;
-		ofn.nMaxFileTitle = 0;
-		ofn.lpstrInitialDir = NULL;
-		ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
-		
-		// Display the Open dialog box:
-		if (GetOpenFileNameA(&ofn) == TRUE) {
-			hfOpenFileDlg = CreateFileA(ofn.lpstrFilter,
-										GENERIC_READ,
-										0,
-										(LPSECURITY_ATTRIBUTES) NULL,
-										OPEN_EXISTING,
-										FILE_ATTRIBUTE_NORMAL,
-										(HANDLE) NULL);
-			
-			// Save the selected filename in the global variable 'fname':
-			fname = ofn.lpstrFile;
-		}
-	} catch (const std::system_error &sys_err1) {
-		const std::string part_1 = "Caught system_error with code: ";
-		const std::string part_2 = "Meaning: ";
-		const std::string part_3 = "The program will now exit.";
-		const std::string err_num = std::to_string(sys_err1.code().value());
-		const std::string err_msg = sys_err1.what();
-		std::string prompt = part_1 + err_num + "\n\n" + part_2 + err_msg + "\n\n" + part_3;
-		MessageBoxA(hWnd, prompt.c_str(), "Exception Encountered", MB_OK | MB_ICONERROR);
-	} catch (const std::exception &excpnt1) {
-		const std::string part_1 = "Caught exception: ";
-		const std::string part_2 = "The program will now exit.";
-		const std::string err_msg = excpnt1.what();
-		const std::string prompt = part_1 + err_msg + "\n\n" + part_2;
-		MessageBoxA(hWnd, prompt.c_str(), "Exception Encountered", MB_OK | MB_ICONERROR);
+		// Save the selected filename in the global variable 'fname':
+		fname = ofn.lpstrFile;
 	}
 }
 

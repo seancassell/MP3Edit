@@ -14,33 +14,7 @@
 #include "StdAfx.hpp"
 
 
-/* **************** IMPORTED NAMESPACES / NAMESPACE ALIASES ***************** */
-using std::string;
-
-
 /* ************************** CONSTEXPR CONSTANTS *************************** */
-/* constexpr const INT STARTUP_X_COORD = 32i32;
-constexpr const INT STARTUP_Y_COORD     =  32i32;
-constexpr const INT CONTROL_SEPARATOR   =  16i32;
-constexpr const INT LABEL_WIDTH         = 480i32;
-constexpr const INT LABEL_HEIGHT        =  32i32;
-constexpr const INT TEXTBOX_HEIGHT      =  32i32;
-constexpr const INT DROPDOWN_HEIGHT     =  32i32;
-constexpr const INT BUTTON_WIDTH_WIDE   = 160i32;
-constexpr const INT BUTTON_WIDTH        = 100i32;
-constexpr const INT BUTTON_WIDTH_NARROW =  72i32;
-constexpr const INT BUTTON_HEIGHT       =  64i32;
-constexpr const INT IMAGE_WIDTH         =  32i32;
-constexpr const INT IMAGE_HEIGHT        =  32i32; */
-//constexpr const INT MAIN_WINDOW_WIDTH        = 512i32; // TODO: Was 448
-constexpr const INT MAIN_WINDOW_WIDTH   = 560i32;
-constexpr const INT MAIN_WINDOW_HEIGHT{
-	(CONTROL_SEPARATOR * 12i32) 
-	+ (LABEL_HEIGHT) 
-	+ (TEXTBOX_HEIGHT * 9i32) 
-	+ (DROPDOWN_HEIGHT) 
-	+ CONTROL_SEPARATOR
-};
 constexpr const ULONG HEAP_TYPE_STANDARD{0ui32};
 constexpr const ULONG HEAP_TYPE_LAL{1ui32};
 constexpr const ULONG HEAP_TYPE_LFH{2ui32};

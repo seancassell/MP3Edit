@@ -6,7 +6,15 @@
 
 
 /* **************************** INCLUDED HEADERS **************************** */
+#include <SDKDDKVer.h> // Master include file for versioning Windows SDK/DDK
+
+// PROJECT-SPECIFIC HEADERS:
 #include "GenreList.hpp"
+
+// WINDOWS SDK HEADERS:
+// For a list and description of child header files included by <Windows.h>, see
+// the following entry on Wikipedia: https://en.wikipedia.org/wiki/Windows.h
+#include <tchar.h>    // Definitions for generic international text functions
 
 
 /* ************************** FUNCTION DEFINITIONS ************************** */

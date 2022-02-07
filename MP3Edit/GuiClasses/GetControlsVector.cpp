@@ -19,7 +19,10 @@ auto Utils::GetControlsVector() noexcept->std::vector<SControl> {
 	// Define the dimensions (top, left, width, height) for each control:
 	// [1] Labels (STATIC):
 	SDimensions dimLblInstructions{
-		CONTROL_SEPARATOR, CONTROL_SEPARATOR, LABEL_WIDTH, LABEL_HEIGHT
+		CONTROL_SEPARATOR, 
+		CONTROL_SEPARATOR, 
+		(MAIN_WINDOW_WIDTH - (CONTROL_SEPARATOR * 2)), 
+		LABEL_HEIGHT
 	};
 	SDimensions dimLblTitle{
 		(dimLblInstructions.Top + dimLblInstructions.Height + CONTROL_SEPARATOR), 
@@ -58,14 +61,14 @@ auto Utils::GetControlsVector() noexcept->std::vector<SControl> {
 		CONTROL_SEPARATOR, LABEL_WIDTH, LABEL_HEIGHT
 	};
 	SDimensions dimLblDiscNumber{
-		(dimLblComposer.Top + dimLblC.Height + CONTROL_SEPARATOR), 
+		(dimLblComposer.Top + dimLblComposer.Height + CONTROL_SEPARATOR), 
 		CONTROL_SEPARATOR, LABEL_WIDTH, LABEL_HEIGHT
 	};
 	
 	// [2] Textboxes (EDIT):
 	int32_t TextboxXCoord = (dimLblTitle.Left + LABEL_WIDTH + CONTROL_SEPARATOR);
 	SDimensions dimTxtTitle{
-		CONTROL_SEPARATOR, 
+		(dimLblTitle.Top - 8), 
 		TextboxXCoord, 
 		TEXTBOX_WIDTH, TEXTBOX_HEIGHT
 	};
@@ -115,7 +118,7 @@ auto Utils::GetControlsVector() noexcept->std::vector<SControl> {
 	};
 	
 	// [3] ComboBoxes (COMBOBOX):
-	SDimensions dimDllGenre{
+	SDimensions dimDdlGenre{
 		(dimTxtAlbumArtist.Top + dimTxtAlbumArtist.Height + CONTROL_SEPARATOR), 
 		TextboxXCoord, 
 		TEXTBOX_WIDTH, TEXTBOX_HEIGHT
@@ -128,57 +131,57 @@ auto Utils::GetControlsVector() noexcept->std::vector<SControl> {
 								 hLblInstructions, 
 								 lblInstructions, 
 								 dimLblInstructions, 
-								 Style::LabelStyle);
+								 Styles::LabelStyle);
 	SControl sconLblTitle(ID_LBL_TITLE, 
 						  hLblTitle, 
 						  lblTitle, 
 						  dimLblTitle, 
-						  Style::LabelStyle);
+						  Styles::LabelStyle);
 	SControl sconLblArtist(ID_LBL_ARTIST, 
 						   hLblArtist, 
 						   lblArtist, 
 						   dimLblArtist, 
-						   Style::LabelStyle);
+						   Styles::LabelStyle);
 	SControl sconLblAlbum(ID_LBL_ALBUM, 
 						  hLblAlbum, 
 						  lblAlbum, 
 						  dimLblAlbum, 
-						  Style::LabelStyle);
+						  Styles::LabelStyle);
 	SControl sconLblYear(ID_LBL_YEAR, 
 						 hLblYear, 
 						 lblYear, 
 						 dimLblYear, 
-						 Style::LabelStyle);
+						 Styles::LabelStyle);
 	SControl sconLblTrack(ID_LBL_TRACK, 
 						  hLblTrack, 
 						  lblTrack, 
 						  dimLblTrack, 
-						  Style::LabelStyle);
+						  Styles::LabelStyle);
 	SControl sconLblComment(ID_LBL_COMMENT, 
 							hLblComment, 
 							lblComment, 
 							dimLblComment, 
-							Style::LabelStyle);
+							Styles::LabelStyle);
 	SControl sconLblAlbumArtist(ID_LBL_ALBUMARTIST, 
 								hLblAlbumArtist, 
 								lblAlbumArtist, 
 								dimLblAlbumArtist, 
-								Style::LabelStyle);
+								Styles::LabelStyle);
 	SControl sconLblGenre(ID_LBL_GENRE, 
 						  hLblGenre, 
 						  lblGenre, 
 						  dimLblGenre, 
-						  Style::LabelStyle);
+						  Styles::LabelStyle);
 	SControl sconLblComposer(ID_LBL_COMPOSER, 
 							 hLblComposer, 
 							 lblComposer, 
 							 dimLblComposer, 
-							 Style::LabelStyle);
+							 Styles::LabelStyle);
 	SControl sconLblDiscNumber(ID_LBL_DISCNUMBER, 
 							   hLblDiscNumber, 
 							   lblDiscNumber, 
 							   dimLblDiscNumber, 
-							   Style::LabelStyle);
+							   Styles::LabelStyle);
 	sconLblInstructions.m_Type = SType::Label;
 	sconLblTitle.m_Type        = SType::Label;
 	sconLblArtist.m_Type       = SType::Label;
@@ -196,47 +199,47 @@ auto Utils::GetControlsVector() noexcept->std::vector<SControl> {
 						  hTxtTitle, 
 						  txtTitle, 
 						  dimTxtTitle, 
-						  Style::EditStyle);
+						  Styles::EditStyle);
 	SControl sconTxtArtist(ID_TXT_ARTIST, 
 						   hTxtArtist, 
 						   txtArtist, 
 						   dimTxtArtist, 
-						   Style::EditStyle);
+						   Styles::EditStyle);
 	SControl sconTxtAlbum(ID_TXT_ALBUM, 
 						  hTxtAlbum, 
 						  txtAlbum, 
 						  dimTxtAlbum, 
-						  Style::EditStyle);
+						  Styles::EditStyle);
 	SControl sconTxtYear(ID_TXT_YEAR, 
 						 hTxtYear, 
 						 txtYear, 
 						 dimTxtYear, 
-						 Style::EditStyle);
+						 Styles::EditStyle);
 	SControl sconTxtTrack(ID_TXT_TRACK, 
 						  hTxtTrack, 
 						  txtTrack, 
 						  dimTxtTrack, 
-						  Style::EditStyle);
+						  Styles::EditStyle);
 	SControl sconTxtComment(ID_TXT_COMMENT, 
 							hTxtComment, 
 							txtComment, 
 							dimTxtComment, 
-							Style::EditStyle);
+							Styles::EditStyle);
 	SControl sconTxtAlbumArtist(ID_TXT_ALBUMARTIST, 
 								hTxtAlbumArtist, 
 								txtAlbumArtist, 
 								dimTxtAlbumArtist, 
-								Style::EditStyle);
+								Styles::EditStyle);
 	SControl sconTxtComposer(ID_TXT_COMPOSER, 
 							 hTxtComposer, 
 							 txtComposer, 
 							 dimTxtComposer, 
-							 Style::EditStyle);
+							 Styles::EditStyle);
 	SControl sconTxtDiscNumber(ID_TXT_DISCNUMBER, 
 							   hTxtDiscNumber, 
 							   txtDiscNumber, 
 							   dimTxtDiscNumber, 
-							   Style::EditStyle);
+							   Styles::EditStyle);
 	sconTxtTitle.m_Type        = SType::Edit;
 	sconTxtArtist.m_Type       = SType::Edit;
 	sconTxtAlbum.m_Type        = SType::Edit;
@@ -252,7 +255,7 @@ auto Utils::GetControlsVector() noexcept->std::vector<SControl> {
 						  hDdlGenre, 
 						  ddlGenre, 
 						  dimDdlGenre, 
-						  Style::ComboBoxStyle);
+						  Styles::ComboBoxStyle);
 	sconDdlGenre.m_Type        = SType::ComboBox;
 	
 	// Add the instances of the 'SControl' class to 'vecControls':

@@ -11,6 +11,8 @@
 
 
 /* **************************** INCLUDED HEADERS **************************** */
+#include <SDKDDKVer.h> // Master include file for versioning Windows SDK/DDK
+
 // C++17 STANDARD LIBRARY/STL HEADERS:
 #include <string>
 #include <vector>

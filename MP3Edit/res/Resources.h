@@ -9,13 +9,14 @@
 #define IDM_FILE_SAVE                           106
 #define IDM_FILE_SAVEAS                         107
 #define IDM_FILE_EXIT                           108
-#define IDM_SETTINGS                            109
-#define IDM_HELP_HELP                           110
-#define IDM_HELP_CHECKFORUPDATE                 111
-#define IDM_HELP_ABOUT                          112
-#define IDI_MP3EDIT                             113
-#define IDI_SMALL                               114
-#define IDC_MP3EDIT                             115
+#define IDM_BATCH_TOOLS                         109
+#define IDM_SETTINGS                            110
+#define IDM_HELP_HELP                           111
+#define IDM_HELP_CHECKFORUPDATE                 112
+#define IDM_HELP_ABOUT                          113
+#define IDI_MP3EDIT                             114
+#define IDI_SMALL                               115
+#define IDC_MP3EDIT                             116
 #define IDC_MYICON                                2
 #ifndef IDC_STATIC
   #define IDC_STATIC                             -1

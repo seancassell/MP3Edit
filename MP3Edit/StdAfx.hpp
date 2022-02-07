@@ -15,6 +15,8 @@
 
 
 /* **************************** INCLUDED HEADERS **************************** */
+#include <SDKDDKVer.h> // Master include file for versioning Windows SDK/DDK
+
 // C++ STANDARD LIBRARY/STL HEADERS:
 #include <algorithm>
 #include <array>
@@ -24,6 +26,7 @@
 #include <fstream>
 #include <iostream>
 #include <locale> // std::locale, std::tolower, std::toupper
+#include <map>
 #include <memory>
 #include <new>
 #include <random>
@@ -70,6 +73,7 @@
 // PROJECT-SPECIFIC HEADERS:
 #include "BuildInfo.h"
 #include "FileDlgFactory.h"
+#include "TagsIO.hpp"
 #include "Utilities.hpp"
 #include "data/Strings.hpp"
 #include "genres/GenreList.hpp"
@@ -81,6 +85,7 @@
 namespace fs = std::filesystem;
 using namespace std::string_literals; // Enable s-suffix for std::string litrl's
 using namespace fmt::literals; // Enables use of the '_a' and '_format' literals
+using std::string;
 
 
 /* ******************** PREPROCESSOR DEFINITIONS/MACROS ********************* */
@@ -90,12 +95,14 @@ using namespace fmt::literals; // Enables use of the '_a' and '_format' literals
 
 /* ************************** CONSTEXPR CONSTANTS *************************** */
 constexpr static const size_t  MAX_LOADSTRING        =  100ui64;
+constexpr static const INT     MAIN_WINDOW_WIDTH     =   560i32;
+constexpr static const INT     MAIN_WINDOW_HEIGHT    =   600i32;
 constexpr static const INT     STARTUP_X_COORD       =    32i32;
 constexpr static const INT     STARTUP_Y_COORD       =    32i32;
 constexpr static const INT     CONTROL_SEPARATOR     =    16i32;
-constexpr static const INT     LABEL_WIDTH           =   128i32;
+constexpr static const INT     LABEL_WIDTH           =    96i32;
 constexpr static const INT     LABEL_HEIGHT          =    32i32;
-constexpr static const INT     TEXTBOX_WIDTH         =   384i32;
+constexpr static const INT     TEXTBOX_WIDTH         =   400i32;
 constexpr static const INT     TEXTBOX_HEIGHT        =    32i32;
 constexpr static const INT     DROPDOWN_WIDTH        =   384i32;
 constexpr static const INT     DROPDOWN_HEIGHT       =    32i32;

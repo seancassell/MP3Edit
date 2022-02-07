@@ -3,14 +3,10 @@
 
 
 /* **************************** INCLUDED HEADERS **************************** */
+// C++ STANDARD LIBRARY/STL HEADERS:
 #include <new>
+#include <string>
 #include <vector>
-//#include "../header.hpp"
-
-
-/* ******************************* DATA TYPES ******************************* */
-// Define a Unicode string type alias:
-//typedef std::basic_string<TCHAR> ustring;
 
 
 /* ******************************* STRUCTURES ******************************* */

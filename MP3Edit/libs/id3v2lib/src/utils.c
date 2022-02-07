@@ -169,12 +169,10 @@ void println_utf16(uint16_t* string, int32_t size) {
 
 
 char* get_path_to_file(const char* file) {
-	char*    file_name = strrchr(file, '/');
-	
-	// Add 1 to account for the trailing '/':
-	uint32_t size      = strlen(file) - strlen(file_name) + 1; 
-	char*    file_path = (char*) malloc(size * sizeof(char));
+	char*  file_name = strrchr(file, '/');
+	// +1 to account for the trailing '/':
+	size_t size      = (strlen(file) - strlen(file_name) + 1);
+	char*  file_path = (char*) malloc(size * sizeof(char));
 	strncpy(file_path, file, size);
-	
 	return file_path;
 }

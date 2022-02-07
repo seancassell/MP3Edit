@@ -72,6 +72,9 @@
     <ClInclude Include="StdAfx.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TagsIO.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -182,6 +185,9 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TagsIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -225,7 +231,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\icons\MP3Edit.ico">
+    <Image Include="res\icons\app_icon.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\icons\small.ico">

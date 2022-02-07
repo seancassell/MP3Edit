@@ -1,17 +1,18 @@
 /* **************************** INCLUDED HEADERS **************************** */
+// PROJECT-SPECIFIC HEADERS:
 #include "SControl.hpp"
 
 
 /* **************************** CLASS DEFINITION **************************** */
 /*  --------  CONSTRUCTORS AND DESTRUCTOR  --------  */
-SControl::SControl() {}
+SControl::SControl() noexcept {}
 
 
 SControl::SControl(int32_t     ID, 
 				   HWND        Handle, 
 				   char*       ClassName, 
 				   SDimensions Dimensions, 
-				   DWORD       Style) 
+				   DWORD       Style) noexcept 
 					: m_ID(ID), 
 					  m_Handle(Handle), 
 					  m_ClassName(ClassName), 
@@ -19,7 +20,7 @@ SControl::SControl(int32_t     ID,
 					  m_Style(Style) {}
 
 
-SControl::~SControl() {}
+SControl::~SControl() noexcept {}
 
 
 /*  --------  'GETTER' MEMBER FUNCTIONS  --------  */
